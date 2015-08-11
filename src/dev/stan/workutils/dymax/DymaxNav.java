@@ -14,15 +14,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 public class DymaxNav {
 
-	private WebDriver driver;
-	private String baseURL = "https://indirectorders.verizonwireless.com";
-	private String loginSuff = "/xt_webloginvalidation.aspx";
+	protected WebDriver driver;
+	protected final String BASE_URL = "https://indirectorders.verizonwireless.com";
+	private String id, pw,loginSuff = "/xt_webloginvalidation.aspx";
+
 	
 	/**
 	 * Initializes Selenium Driver
 	 */
-	public DymaxNav(){
+	public DymaxNav(String id, String pw){
 		driver = new FirefoxDriver();
+		this.id = id;
+		this.pw = pw;
 	}
 	
 	/**
@@ -33,8 +36,8 @@ public class DymaxNav {
 	 * @param pw User's Dymax password
 	 * @throws LoginCredentialsException 
 	 */
-	public void signIn(String id, String pw) throws LoginCredentialsException{
-		driver.get(baseURL + loginSuff);
+	public void signIn() throws LoginCredentialsException{
+		driver.get(BASE_URL + loginSuff);
 		
 		WebElement userField, pwField;
 		
@@ -47,7 +50,7 @@ public class DymaxNav {
 		//click login button
 		driver.findElement(By.name("ctl00$MainPlaceHolder$Button1")).click();
 		
-		if(driver.getCurrentUrl().equals(baseURL+loginSuff)){
+		if(driver.getCurrentUrl().equals(BASE_URL+loginSuff)){
 			throw new LoginCredentialsException("Invalid login. Please check credentials and try again.");
 		}
 	}
@@ -60,10 +63,10 @@ public class DymaxNav {
 	}
 	
 	public static void main(String[] args) throws LoginCredentialsException{
-		DymaxNav tst = new DymaxNav();
+		DymaxNav tst = new DymaxNav(args[0],args[1]);
 		
 		try{
-			tst.signIn(args[0], args[1]);
+			tst.signIn();
 		}catch (LoginCredentialsException e){
 			tst.quit();
 		}
