@@ -1,0 +1,5 @@
+*.class
+bin/dev/stan/workutils/dymax/twitter4j.properties
+*.properties
+.classpath
+*.project

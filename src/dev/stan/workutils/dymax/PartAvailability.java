@@ -20,7 +20,7 @@ public class PartAvailability extends DymaxNav {
 	 * Navigates to the specified part and gathers information regarding that SKU.
 	 * @param partNum The desired Verizon Dymax part number to gather info for.
 	 */
-	public void getPartInfo(String partNum){
+	public void setPartInfo(String partNum){
 		this.partNum = partNum;
 		String urlToCheck = BASE_URL + PART_URL_BASE + partNum;
 		driver.get(urlToCheck);
@@ -75,7 +75,7 @@ public class PartAvailability extends DymaxNav {
 	public static void main(String[] args) throws LoginCredentialsException{
 		PartAvailability tst = new PartAvailability(args[0], args[1]);
 		tst.signIn();
-		tst.getPartInfo("KYOE4520-D");
+		tst.setPartInfo("KYOE4520-D");
 		
 		System.out.println(tst.getCost() + "\n" + tst.getDesc()+"\n"+ tst.getPartNum()+"\n"+tst.getQty());
 	}
