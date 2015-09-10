@@ -11,6 +11,8 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import dev.stan.workutils.exception.LoginCredentialsException;
+import dev.stan.workutils.exception.PropertyNotFoundException;
+import dev.stan.workutils.helper.PropHelper;
 
 public class InventoryNotify {
 	private PartAvailability parts;
@@ -58,15 +60,7 @@ public class InventoryNotify {
 
 		twitter.updateStatus(tweet);
 	}
-	
-	/**
-	 * Reads a plaintext file for the SKUs that should be checked
-	 * on Dymax's catalog.
-	 * 
-	 * @param file The file to be scanned for part numbers
-	 * @return ArrayList of all of the part numbers in the given file
-	 * @throws FileNotFoundException Thrown if the given file cannot be located
-	 */
+
 	private ArrayList<String> generateSKUList(File file) throws FileNotFoundException{
 		Scanner scan = new Scanner(file);
 		ArrayList<String> SKUList = new ArrayList<String>();
@@ -88,14 +82,24 @@ public class InventoryNotify {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, LoginCredentialsException, TwitterException{
+
+		
+		String username = null, pw = null;
+
+		try {
+			username = PropHelper.getPropertyValue("user");
+			pw = PropHelper.getPropertyValue("password");
+		} catch (PropertyNotFoundException e) {
+			e.printStackTrace();
+		}
+		InventoryNotify tweeter = new InventoryNotify(username,pw,new File("C:\\Users\\User\\Documents\\Dymax Crawler\\Dymax Crawler.txt"));
+		
 		Calendar now = new GregorianCalendar();
-		
-		InventoryNotify tst = new InventoryNotify(args[0],args[1],new File("C:\\Users\\User\\Documents\\Dymax Crawler\\Dymax Crawler.txt"));
-		
-		while(now.get(Calendar.HOUR_OF_DAY) < 21 && tst.getSKUList().size() > 0){
-			tst.crawl();
+		//run continuously until 9 o'clock
+		while(now.get(Calendar.HOUR_OF_DAY) < 21 && tweeter.getSKUList().size() > 0){
+			tweeter.crawl();
 		}
 		
-		tst.getParts().quit();
+		tweeter.getParts().quit();
 	}
 }

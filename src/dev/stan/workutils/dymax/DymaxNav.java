@@ -61,14 +61,4 @@ public class DymaxNav {
 	public void quit(){
 		driver.quit();
 	}
-	
-	public static void main(String[] args) throws LoginCredentialsException{
-		DymaxNav tst = new DymaxNav(args[0],args[1]);
-		
-		try{
-			tst.signIn();
-		}catch (LoginCredentialsException e){
-			tst.quit();
-		}
-	}
 }

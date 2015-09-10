@@ -37,11 +37,4 @@ public class IconicInfo extends DymaxNav {
 
 		driver.findElement(By.id("ctl00_MainPlaceHolder_grdOrdersList_ctl02_LinkButton1")).click();
 	}
-	
-	public static void main(String[] args) throws LoginCredentialsException{
-		IconicInfo tst = new IconicInfo(args[0], args[1]);
-		tst.signIn();
-		System.out.println(tst.getCustomerName("7723223162196201"));
-	}
-
 }
