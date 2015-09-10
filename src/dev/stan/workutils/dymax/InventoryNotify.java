@@ -11,8 +11,6 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import dev.stan.workutils.exception.LoginCredentialsException;
-import dev.stan.workutils.exception.PropertyNotFoundException;
-import dev.stan.workutils.helper.PropHelper;
 
 public class InventoryNotify {
 	private PartAvailability parts;
@@ -20,8 +18,8 @@ public class InventoryNotify {
 	private final String users[] = {"@stanbessey"};
 	private ArrayList<String> SKUlist;
 	
-	public InventoryNotify(String user, String pw, File file) throws LoginCredentialsException, FileNotFoundException{
-		parts = new PartAvailability(user, pw);
+	public InventoryNotify(File file) throws LoginCredentialsException, FileNotFoundException{
+		parts = new PartAvailability();
 		parts.signIn();
 		twitter = TwitterFactory.getSingleton();
 		SKUlist = this.generateSKUList(file);
@@ -83,16 +81,7 @@ public class InventoryNotify {
 
 	public static void main(String[] args) throws FileNotFoundException, LoginCredentialsException, TwitterException{
 
-		
-		String username = null, pw = null;
-
-		try {
-			username = PropHelper.getPropertyValue("user");
-			pw = PropHelper.getPropertyValue("password");
-		} catch (PropertyNotFoundException e) {
-			e.printStackTrace();
-		}
-		InventoryNotify tweeter = new InventoryNotify(username,pw,new File("C:\\Users\\User\\Documents\\Dymax Crawler\\Dymax Crawler.txt"));
+		InventoryNotify tweeter = new InventoryNotify(new File("C:\\Users\\User\\Documents\\Dymax Crawler\\Dymax Crawler.txt"));
 		
 		Calendar now = new GregorianCalendar();
 		//run continuously until 9 o'clock

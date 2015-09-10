@@ -4,12 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import dev.stan.workutils.exception.LoginCredentialsException;
-
 public class IconicInfo extends DymaxNav {
 
-	public IconicInfo(String id, String pw) {
-		super(id, pw);
+	public IconicInfo() {
+		super();
 	}
 	
 	public String getCustomerName(String preorderNum){

@@ -1,17 +1,9 @@
 package dev.stan.workutils.dymax;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import dev.stan.workutils.exception.LoginCredentialsException;
-import dev.stan.workutils.exception.PropertyNotFoundException;
-import dev.stan.workutils.helper.PropHelper;
 
 public class PartAvailability extends DymaxNav {
 
@@ -20,8 +12,8 @@ public class PartAvailability extends DymaxNav {
 	private final String PART_URL_BASE = "/xt_product.aspx?sku=";
 	
 	
-	public PartAvailability(String id, String pw) {
-		super(id, pw);
+	public PartAvailability() {
+		super();
 	}
 
 	/**
@@ -78,5 +70,11 @@ public class PartAvailability extends DymaxNav {
 	 */
 	public int getQty() {
 		return qty;
+	}
+	
+	public static void main(String[] args) throws LoginCredentialsException{
+		PartAvailability test = new PartAvailability();
+		test.signIn();
+		test.quit();		
 	}
 }

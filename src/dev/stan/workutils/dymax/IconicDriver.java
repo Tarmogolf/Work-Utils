@@ -29,7 +29,7 @@ public class IconicDriver {
 			splitDfill.add(split);
 		}
 		
-		IconicInfo iconic = new IconicInfo(args[0], args[1]);
+		IconicInfo iconic = new IconicInfo();
 		iconic.signIn();
 		iconic.quit();
 	}

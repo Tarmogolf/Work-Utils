@@ -26,7 +26,7 @@ public class PropHelper {
 	
 	public static String getPropertyValue(String key) throws PropertyNotFoundException{
 		if(!dymaxProp.containsKey(key)){
-			throw new PropertyNotFoundException(key +"not found in properties.");
+			throw new PropertyNotFoundException(key +" not found in properties.");
 		}else{
 			return dymaxProp.getProperty(key);
 		}

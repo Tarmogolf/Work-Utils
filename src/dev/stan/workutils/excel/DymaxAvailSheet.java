@@ -25,8 +25,8 @@ public class DymaxAvailSheet {
 	private WritableSheet sheet;
 	private final int DESC_COL = 0, PART_NUM_COL = 1, QTY_COL = 2, COST_COL = 3;
 	
-	public DymaxAvailSheet(String id, String pw, String inputPath, String outputPath) throws IOException, LoginCredentialsException{
-		avail = new PartAvailability(id,pw);
+	public DymaxAvailSheet(String inputPath, String outputPath) throws IOException, LoginCredentialsException{
+		avail = new PartAvailability();
 		avail.signIn();
 		book = Workbook.createWorkbook(new File(outputPath + generateFileName()));
 		partNums = generateSKUList(new File(inputPath));
@@ -72,7 +72,7 @@ public class DymaxAvailSheet {
 	}
 	
 	public static void main(String[] args) throws IOException, RowsExceededException, WriteException, LoginCredentialsException{
-		DymaxAvailSheet mySheet = new DymaxAvailSheet(args[0],args[1],
+		DymaxAvailSheet mySheet = new DymaxAvailSheet(
 				"C:\\Users\\User\\Documents\\Dymax Crawler\\Availability Sheet.txt",
 				"C:\\Users\\User\\Documents\\");
 		

@@ -1,5 +1,8 @@
 package dev.stan.workutils.dymax;
 import dev.stan.workutils.exception.LoginCredentialsException;
+import dev.stan.workutils.exception.PropertyNotFoundException;
+import dev.stan.workutils.helper.PropHelper;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,16 +19,26 @@ public class DymaxNav {
 
 	protected WebDriver driver;
 	protected final String BASE_URL = "https://indirectorders.verizonwireless.com";
-	private String id, pw,loginSuff = "/xt_webloginvalidation.aspx";
+	private String id, pw, loginSuff = "/xt_webloginvalidation.aspx";
 
 	
 	/**
 	 * Initializes Selenium Driver
 	 */
-	public DymaxNav(String id, String pw){
-		driver = new FirefoxDriver();
+	public DymaxNav(){
+		String id = null, pw = null;
+
+		try {
+			id = PropHelper.getPropertyValue("user");
+			pw = PropHelper.getPropertyValue("password");
+		} catch (PropertyNotFoundException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
 		this.id = id;
 		this.pw = pw;
+		
+		driver = new FirefoxDriver();
 	}
 	
 	/**
