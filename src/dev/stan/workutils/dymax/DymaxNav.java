@@ -45,8 +45,6 @@ public class DymaxNav {
 	 * Launches web browser and attempts to sign in using provided
 	 * credentials.
 	 * 
-	 * @param id User's Dymax ID
-	 * @param pw User's Dymax password
 	 * @throws LoginCredentialsException 
 	 */
 	public void signIn() throws LoginCredentialsException{
