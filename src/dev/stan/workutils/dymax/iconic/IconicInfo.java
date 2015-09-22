@@ -1,8 +1,10 @@
-package dev.stan.workutils.dymax;
+package dev.stan.workutils.dymax.iconic;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import dev.stan.workutils.dymax.DymaxNav;
 
 public class IconicInfo extends DymaxNav {
 

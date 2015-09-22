@@ -1,4 +1,4 @@
-package dev.stan.workutils.excel;
+package dev.stan.workutils.dymax.avail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
-import dev.stan.workutils.dymax.PartAvailability;
+import dev.stan.workutils.excel.JXLW;
 import dev.stan.workutils.exception.LoginCredentialsException;
 
 public class DymaxAvailSheet {

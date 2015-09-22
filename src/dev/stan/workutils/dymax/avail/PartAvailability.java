@@ -1,8 +1,9 @@
-package dev.stan.workutils.dymax;
+package dev.stan.workutils.dymax.avail;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import dev.stan.workutils.dymax.DymaxNav;
 import dev.stan.workutils.exception.LoginCredentialsException;
 
 public class PartAvailability extends DymaxNav {

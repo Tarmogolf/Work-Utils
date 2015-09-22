@@ -1,4 +1,4 @@
-package dev.stan.workutils.dymax;
+package dev.stan.workutils.dymax.avail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
