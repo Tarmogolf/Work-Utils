@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -13,6 +14,8 @@ public class IconicThread implements Runnable {
 	private List<String[]> subList;
 	private final int PREORDER_NUM_INDEX = 8, CUST_NAME_INDEX = 10;
 	private File outputFile;
+	private HashMap<String, String> storeCodes = IconicList.generateList();
+	
 	static CopyOnWriteArrayList<String> allDFills = new CopyOnWriteArrayList<String>();
 	
 	public IconicThread(List<String[]> list){
@@ -37,6 +40,12 @@ public class IconicThread implements Runnable {
 					String customerName = fetcher.getCustomerName(i[PREORDER_NUM_INDEX]);
 					i[CUST_NAME_INDEX] = customerName;
 					//System.out.println(customerName);
+					String storeCode = i[1];
+					if(!storeCodes.containsKey(storeCode)){
+						i[9] = "no match";
+					}else{
+						i[9] = storeCodes.get(storeCode);
+					}
 					
 					String delim = "";
 					StringBuilder sb = new StringBuilder();
@@ -92,6 +101,7 @@ public class IconicThread implements Runnable {
 		FileWriter writer = new FileWriter("C:/Users/User/Documents/Output.txt");
 		
 		for(String str : allDFills){
+			
 			writer.write(str);
 			writer.write("\n");
 		}

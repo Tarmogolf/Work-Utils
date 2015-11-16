@@ -14,7 +14,13 @@ public class IconicInfo extends DymaxNav {
 	
 	public String getCustomerName(String preorderNum){
 		navigateToPreorder(preorderNum);
-		return driver.findElement(By.id("ctl00_MainPlaceHolder_lblShipToContact")).getText();
+		String custName = driver.findElement(By.id("ctl00_MainPlaceHolder_lblShipToContact")).getText();
+		
+		if (custName.isEmpty()){
+			return "Auto Submit";
+		}else{
+			return custName;
+		}
 	}
 	
 	private void navigateToPreorder(String preorderNumber){
