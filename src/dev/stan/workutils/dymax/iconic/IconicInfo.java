@@ -12,9 +12,9 @@ public class IconicInfo extends DymaxNav {
 		super();
 	}
 	
-	public String getCustomerName(String preorderNum){
+	public String getCustomerName(String preorderNum) throws InterruptedException{
 		navigateToPreorder(preorderNum);
-		String custName = driver.findElement(By.id("ctl00_MainPlaceHolder_lblShipToContact")).getText();
+		String custName = driver.findElement(By.xpath("//*[@id=\"MainPlaceHolder_lblShipToContact\"]")).getText();
 		
 		if (custName.isEmpty()){
 			return "Auto Submit";
@@ -23,10 +23,10 @@ public class IconicInfo extends DymaxNav {
 		}
 	}
 	
-	private void navigateToPreorder(String preorderNumber){
+	private void navigateToPreorder(String preorderNumber) throws InterruptedException{
 		driver.get("https://indirectorders.verizonwireless.com/xt_documentsearch.aspx");
 		
-		WebElement dropDown = driver.findElement(By.id("ctl00_MainPlaceHolder_ddlCriteriaMain"));
+		WebElement dropDown = driver.findElement(By.xpath("//*[@id=\"MainPlaceHolder_ddlCriteriaMain\"]"));
 		Select preorder = new Select(dropDown);
 		preorder.selectByVisibleText("Pre-Order Number");
 		
@@ -39,8 +39,8 @@ public class IconicInfo extends DymaxNav {
 		}
 		
 		driver.findElement(By.name("ctl00$MainPlaceHolder$txtFromCriteriaNoDate")).sendKeys(preorderNumber);
-		driver.findElement(By.id("ctl00_MainPlaceHolder_btnSearch")).click();
+		driver.findElement(By.xpath("//*[@id=\"MainPlaceHolder_btnSearch\"]")).click();
 
-		driver.findElement(By.id("ctl00_MainPlaceHolder_grdOrdersList_ctl02_LinkButton1")).click();
+		driver.findElement(By.xpath("//*[@id=\"MainPlaceHolder_grdOrdersList_LinkButton1_0\"]")).click();
 	}
 }

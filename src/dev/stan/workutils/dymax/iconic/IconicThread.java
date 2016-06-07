@@ -54,6 +54,7 @@ public class IconicThread implements Runnable {
 						delim = ",";
 					}
 					String customerData = sb.toString();
+					//System.out.println(customerData);
 					allDFills.add(customerData);
 					break;
 				}catch(Exception e){
@@ -79,7 +80,7 @@ public class IconicThread implements Runnable {
 		
 		ArrayList<String[]> myList = test.getIconicList();
 		
-		int numThreads = 7;
+		int numThreads = 6;
 		
 		int numPerThread = myList.size() / numThreads;
 		
@@ -98,7 +99,7 @@ public class IconicThread implements Runnable {
 			threads[i].join();
 		}
 		
-		FileWriter writer = new FileWriter("C:/Users/User/Documents/Output.txt");
+		FileWriter writer = new FileWriter("C:/Users/User/Documents/D-Fill Output.txt");
 		
 		for(String str : allDFills){
 			
@@ -112,7 +113,7 @@ public class IconicThread implements Runnable {
 		
 		float timeElapsed = (endTime-startTime);
 		
-		System.out.println("total execution time: " + timeElapsed);
+		System.out.println("We finished!");
 	
 	}
 
